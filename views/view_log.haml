@@ -1,0 +1,2 @@
+- @msgs.each do |msg|
+  %p= Time.at(msg['timestamp']).strftime('%D %T') + ' &lt;' + msg['nick'] + '&gt; ' + msg['message']

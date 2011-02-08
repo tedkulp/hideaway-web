@@ -7,7 +7,12 @@ require "models/user"
 use Rack::Session::Cookie, :secret => 'lksjdio23rlksdlfkj234kljslkdjsdlfkj234klj23lkjlkjsdflkjsdflkj234lkj'
 use Rack::Flash
 
-MongoMapper.database = 'rbircd'
+if File::exists?('database_config.rb')
+	puts "database config"
+	require "database_config"
+else
+	MongoMapper.database = 'hideaway'
+end
 
 def current_user
 	if session[:user]
@@ -38,9 +43,7 @@ end
 
 get '/log/*' do
 	channel_name = params[:splat].to_s
-	puts channel_name
 	col_name = 'channel-' + channel_name
-	puts col_name
 	@msgs = get_db[col_name].find(:channel => channel_name).sort(['timestamp', 'ascending'])
 	haml :view_log
 end

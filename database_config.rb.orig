@@ -1,0 +1,7 @@
+# Copy this from database_config.rb.org to database_config.rb
+# and comment out the lines above to use an alternate 
+# configuration
+ 
+# MongoMapper.connection = Mongo::Connection.new('localhost', 27017)
+# MongoMapper.database = 'database_name'
+# MongoMapper.database.authenticate('username', 'password')
